@@ -1,6 +1,7 @@
 import pygame as pg
 from random import randrange, choice
 import math
+import os
 
 pg.init()
 pg.font.init()
@@ -28,17 +29,18 @@ apple_color = 'red'
 screen = pg.display.set_mode((DISPLAY_WIDTH, DISPLAY_HEIGHT))
 pg.display.set_caption('Snake')
 
-apple_image = pg.image.load('apple.png').convert_alpha()
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+apple_image = pg.image.load(os.path.join(BASE_DIR, 'apple.png')).convert_alpha()
 apple_image = pg.transform.scale(apple_image, (27, 27))
 
-sound_1 = pg.mixer.Sound('minecraft_eat.mp3')
-sound_2 = pg.mixer.Sound('omnomnom.mp3')
+sound_1 = pg.mixer.Sound(os.path.join(BASE_DIR, 'minecraft_eat.mp3'))
+sound_2 = pg.mixer.Sound(os.path.join(BASE_DIR, 'omnomnom.mp3'))
 
 sounds_eat = [
     sound_1,
     sound_2,
 ]
-sound_tail_eat = pg.mixer.Sound('smeshnyie-zvuki-pukanya.mp3')
+sound_tail_eat = pg.mixer.Sound(os.path.join(BASE_DIR, 'smeshnyie-zvuki-pukanya.mp3'))
 
 move_buttons = {
     pg.K_w: (0, -1), pg.K_UP: (0, -1),
